@@ -1,20 +1,35 @@
 package co.edu.poligran.arquitectura.computador.numerosprimos;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  * @author juespinosa2@poligran.edu.co
- * @versión Sep 8, 2020
+ * @version Sep 8, 2020
  * @since 1.8
  */
 public class Main {
 
     public static void main(String[] args) {
-        // Se probará con los números del 1 al 100
-        for (int i = 1; i <= 100; i++) {
-            if (isPrime(i)) {
-                System.out.println("El número " + i + " es primo.");
-            } else {
-                System.out.println("El número " + i + " no es primo.");
-            }
+        int number = getNumberFromInput();
+
+        if (isPrime(number)) {
+            System.out.println("> El número " + number + " es primo.");
+        } else {
+            System.out.println("> El número " + number + " no es primo.");
+        }
+    }
+
+    private static int getNumberFromInput() {
+        try {
+            Scanner s = new Scanner(System.in);
+            System.out.print("Ingrese un número: ");
+
+            return s.nextInt();
+        } catch (InputMismatchException ex) {
+            System.out.println("> Número no válido");
+
+            return getNumberFromInput();
         }
     }
 
@@ -44,4 +59,6 @@ public class Main {
         */
         return true;
     }
+
+
 }
